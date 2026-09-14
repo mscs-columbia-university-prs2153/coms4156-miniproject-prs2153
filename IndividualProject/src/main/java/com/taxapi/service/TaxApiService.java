@@ -93,7 +93,9 @@ public final class TaxApiService {
             .anyMatch(c ->
                 c.getName().equalsIgnoreCase(name)
             );
-        if (!nameExists) {
+
+        // if (!nameExists) {
+        if (nameExists) {
             return null;
         }
 
