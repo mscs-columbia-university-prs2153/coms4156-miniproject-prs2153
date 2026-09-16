@@ -107,7 +107,7 @@ class ApiControllerTest {
             .header("X-API-Key", VALID_KEY)
         )
         .andExpect(status().isOk())
-        .andExpect(jsonPath("$[0].id").value("Laptop"))
+        .andExpect(jsonPath("$[0].id").value("item-1"))
         .andExpect(jsonPath("$[0].category").value("electronics"))
         .andExpect(jsonPath("$[0].basePrice").value("999.99"));
     }
@@ -124,7 +124,7 @@ class ApiControllerTest {
     @Test
     void getItemsById() throws Exception {
         mockMvc.perform(
-            get("/v1/items/Laptop")
+            get("/v1/items/item-1")
             .header("X-API-Key", VALID_KEY)
         )
         .andExpect(status().isOk())
@@ -144,7 +144,7 @@ class ApiControllerTest {
     @Test
     void deleteItemsById() throws Exception {
         mockMvc.perform(
-            delete("/v1/items/Laptop")
+            delete("/v1/items/item-1")
             .header("X-API-Key", VALID_KEY)
         )
         .andExpect(status().isNoContent());

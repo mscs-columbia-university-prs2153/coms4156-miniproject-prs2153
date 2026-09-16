@@ -7,6 +7,11 @@ import org.junit.jupiter.api.io.TempDir;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import com.taxapi.model.Client;
+import com.taxapi.model.TaxQuoteRequest;
+import com.taxapi.model.TaxQuoteResponse;
+
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -43,5 +48,15 @@ class TaxApiServiceUnitTests {
     @Test
     void contextLoads() {
         // Placeholder so the test class is non-empty. Replace with real tests.
+    }
+
+    @Test
+    void calculateTaxByItemId() throws Exception {
+        TaxQuoteRequest tqr = new TaxQuoteRequest();
+        tqr.setItemId("item-1");
+        tqr.setState("CA");
+
+        TaxQuoteResponse result = service.calculateTax(tqr);
+        assertEquals(result.getPrice(), 999.99);
     }
 }

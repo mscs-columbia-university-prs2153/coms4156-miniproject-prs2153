@@ -47,7 +47,7 @@ public final class Item {
      * @return the ID
      */
     public String getId() {
-        return name;
+        return id;
     }
 
     /**

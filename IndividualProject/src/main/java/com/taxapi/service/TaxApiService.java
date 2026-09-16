@@ -278,7 +278,7 @@ public final class TaxApiService {
         }
 
         double rate = taxRate.getRate();
-        double taxAmount = price + price * rate;
+        double taxAmount = price * rate;
         double total = price + taxAmount;
 
         return new TaxQuoteResponse(
