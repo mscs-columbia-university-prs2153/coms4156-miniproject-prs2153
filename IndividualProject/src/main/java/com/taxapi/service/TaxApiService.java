@@ -94,7 +94,6 @@ public final class TaxApiService {
                 c.getName().equalsIgnoreCase(name)
             );
 
-        // if (!nameExists) {
         if (nameExists) {
             return null;
         }
