@@ -21,27 +21,6 @@ public final class TaxQuoteRequest {
     public TaxQuoteRequest() {
     }
 
-    // /**
-    //  * Fully-qualified constructor.
-    //  * (added for testing)
-    //  * 
-    //  * @param state the state to set
-    //  * @param itemId the itemId to set
-    //  * @param price the price to set
-    //  * @param category the category to set
-    //  */
-    // public TaxQuoteRequest(
-    //     String state,
-    //     String itemId,
-    //     Double price,
-    //     String category
-    // ) {
-    //     this.state = state;
-    //     this.itemId = itemId;
-    //     this.price = price;
-    //     this.category = category;
-    // }
-
     /**
      * Gets the state.
      *
