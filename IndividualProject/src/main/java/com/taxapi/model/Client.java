@@ -44,7 +44,11 @@ public final class Client {
         return id;
     }
 
-
+    /**
+     * Sets the ID.
+     * 
+     * @param id to set
+     */
     public void setId(final String id) {
         this.id = id;
     }
@@ -68,6 +72,11 @@ public final class Client {
     }
 
 
+    /**
+     * Get the API key.
+     * 
+     * @return the api key 
+     */
     public String getApiKey() {
         return apiKey;
     }

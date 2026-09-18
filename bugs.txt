@@ -1,0 +1,26 @@
+Part I1:
+
+Specific:
+src/main/java/com/taxapi/controller/ApiController.java:
+- removed * imports
+
+src/main/java/com/taxapi/model/Item.java:
+- getId() was returning item name not id
+
+src/main/java/com/taxapi/service/GcsStorageService.java
+- removed * imports
+
+src/main/java/com/taxapi/service/TaxApiService.java:
+- removed * imports
+- createClient() was returning null when name didn't already exist (should be no-op when name does exist)
+- calculateTax() added price to the tax amount
+
+src/main/java/com/taxapi/TaxApiApplication.java:
+- TaxApiApplication() class constructor was spelled incorrectly
+- main() was missing a semicolon
+
+src/test/java/com/taxapi/ApiControllerTest.java:
+- added unit tests
+
+src/test/java/com/taxapi/TaxApiServiceUnitTests.java:
+- added unit tests

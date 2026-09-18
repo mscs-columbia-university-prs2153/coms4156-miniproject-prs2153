@@ -1,0 +1,4 @@
+Part I1:
+
+https://docs.spring.io/spring-boot/4.0/tutorial/first-application/index.html
+https://docs.spring.io/spring-boot/4.0/reference/web/servlet.html
