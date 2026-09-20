@@ -228,6 +228,27 @@ public final class TaxApiService {
         return removed;
     }
 
+    public boolean updateItemBasePrice(
+        final String id,
+        final double newPrice
+    ) throws IOException {
+        List<Item> items = readList(
+            "items.json",
+            new TypeReference<>() { }
+        );
+
+        Item itemToUpdate = getItemById(id);
+
+        if (itemToUpdate == null) {
+            return false;
+        }
+
+        itemToUpdate.setBasePrice(newPrice);
+        writeList("items.json", items);
+
+        return true;
+    }
+
     /**
      * Calculates tax for a request.
      *
