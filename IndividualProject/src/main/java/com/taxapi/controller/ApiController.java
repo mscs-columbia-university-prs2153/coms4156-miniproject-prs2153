@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -167,6 +168,29 @@ public final class ApiController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.noContent().build();
+    }
+
+    @PatchMapping("/items/{id}")
+    public ResponseEntity<Void> updateItemBasePrice(
+        @RequestHeader("X-API-Key")
+        final String apiKey,
+        @PathVariable final String id,
+        @RequestHeader final double newPrice 
+    ) throws IOException {
+        if (!taxApiService.validateApiKey(apiKey)) {
+            return ResponseEntity
+                .status(HttpStatus.UNAUTHORIZED)
+                .build();
+        }
+        boolean updatedBasePrice =
+            taxApiService.updateItemBasePrice(id, newPrice);
+
+        if (!updatedBasePrice) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity
+            .status(HttpStatus.OK)
+            .build();
     }
 
     /**
