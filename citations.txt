@@ -6,6 +6,6 @@ https://docs.spring.io/spring-boot/4.0/reference/web/servlet.html
 
 Part I2:
 
-https://www.w3schools.com/java/ref_arraylist_set.asp
+https://www.baeldung.com/spring-rest-json-patch
 
 

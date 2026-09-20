@@ -175,7 +175,7 @@ public final class ApiController {
         @RequestHeader("X-API-Key")
         final String apiKey,
         @PathVariable final String id,
-        @PathVariable final double newPrice 
+        @RequestHeader final double newPrice 
     ) throws IOException {
         if (!taxApiService.validateApiKey(apiKey)) {
             return ResponseEntity
@@ -183,12 +183,14 @@ public final class ApiController {
                 .build();
         }
         boolean updatedBasePrice =
-            taxApiService.updateItemBasePrice(id);
+            taxApiService.updateItemBasePrice(id, newPrice);
 
         if (!updatedBasePrice) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.noContent().build();
+        return ResponseEntity
+            .status(HttpStatus.OK)
+            .build();
     }
 
     /**

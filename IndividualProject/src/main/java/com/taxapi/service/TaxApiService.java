@@ -237,7 +237,13 @@ public final class TaxApiService {
             new TypeReference<>() { }
         );
 
-        Item itemToUpdate = getItemById(id);
+        Item itemToUpdate = items.stream()
+            .filter(item ->
+                item.getId().equals(id)
+            )
+            .findFirst()
+            .orElse(null);
+        
 
         if (itemToUpdate == null) {
             return false;
