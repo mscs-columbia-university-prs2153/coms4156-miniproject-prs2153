@@ -172,11 +172,34 @@ public final class TaxApiService {
      * @return all items
      * @throws IOException if an I/O error occurs
      */
-    public List<Item> getItems() throws IOException {
-        return readList(
+    public List<Item> getItems(
+        final String category,
+        final String q
+    ) throws IOException {
+        List<Item> items = readList(
             "items.json",
             new TypeReference<>() { }
         );
+
+        if (category != null) {
+            items = items.stream()
+            .filter(item ->
+                item.getCategory() != null &&
+                item.getCategory().equalsIgnoreCase(category)
+            )
+            .toList();
+        }
+
+        if (q != null) {
+            items = items.stream()
+            .filter(item ->
+                item.getName() != null &&
+                item.getName().toLowerCase().contains(q.toLowerCase())
+            )
+            .toList();
+        }
+
+        return items;
     }
 
     /**
