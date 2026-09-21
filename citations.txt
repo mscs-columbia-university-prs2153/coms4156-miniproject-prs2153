@@ -7,5 +7,6 @@ https://docs.spring.io/spring-boot/4.0/reference/web/servlet.html
 Part I2:
 
 https://www.baeldung.com/spring-rest-json-patch
+https://www.baeldung.com/spring-request-param
 
 
