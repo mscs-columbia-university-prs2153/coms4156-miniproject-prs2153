@@ -59,4 +59,51 @@ class TaxApiServiceUnitTests {
         TaxQuoteResponse result = service.calculateTax(tqr);
         assertEquals(result.getPrice(), 999.99);
     }
+
+    @Test
+    void calculateTaxByNonexistentItemId() throws Exception {
+        TaxQuoteRequest tqr = new TaxQuoteRequest();
+        tqr.setItemId("item-100");
+        tqr.setState("CA");
+
+        TaxQuoteResponse result = service.calculateTax(tqr);
+        assertEquals(result, null);
+    }
+
+    @Test
+    void calculateTaxWithoutItemId() throws Exception {
+        TaxQuoteRequest tqr = new TaxQuoteRequest();
+        tqr.setCategory("electronics");
+        tqr.setPrice(1.00);
+        tqr.setState("CA");
+
+        TaxQuoteResponse result = service.calculateTax(tqr);
+        assertEquals(result.getPrice(), 1.00);
+        assertEquals(result.getTaxRate(), 0.0725);
+        assertEquals(result.getTaxAmount(), 0.0725);
+        assertEquals(result.getTotal(), 1.0725);
+
+    }
+
+    @Test
+    void calculateTaxByNonexistentState() throws Exception {
+        TaxQuoteRequest tqr = new TaxQuoteRequest();
+        tqr.setCategory("electronics");
+        tqr.setPrice(1.00);
+        tqr.setState("AA");
+
+        TaxQuoteResponse result = service.calculateTax(tqr);
+        assertEquals(result, null);
+    }
+
+    @Test
+    void calculateTaxByNonexistentCategory() throws Exception {
+        TaxQuoteRequest tqr = new TaxQuoteRequest();
+        tqr.setCategory("cars");
+        tqr.setPrice(1.00);
+        tqr.setState("CA");
+
+        TaxQuoteResponse result = service.calculateTax(tqr);
+        assertEquals(result, null);
+    }
 }

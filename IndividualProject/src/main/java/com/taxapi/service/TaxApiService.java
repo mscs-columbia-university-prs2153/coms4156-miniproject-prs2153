@@ -169,6 +169,8 @@ public final class TaxApiService {
     /**
      * Gets all items.
      *
+     * @param category of the items
+     * @param q substring of name of the item
      * @return all items
      * @throws IOException if an I/O error occurs
      */
@@ -184,8 +186,8 @@ public final class TaxApiService {
         if (category != null) {
             items = items.stream()
             .filter(item ->
-                item.getCategory() != null &&
-                item.getCategory().equalsIgnoreCase(category)
+                item.getCategory() != null
+                && item.getCategory().equalsIgnoreCase(category)
             )
             .toList();
         }
@@ -193,8 +195,8 @@ public final class TaxApiService {
         if (q != null) {
             items = items.stream()
             .filter(item ->
-                item.getName() != null &&
-                item.getName().toLowerCase().contains(q.toLowerCase())
+                item.getName() != null
+                && item.getName().toLowerCase().contains(q.toLowerCase())
             )
             .toList();
         }
@@ -251,6 +253,13 @@ public final class TaxApiService {
         return removed;
     }
 
+    /**
+     * Update the base price for an item.
+     * 
+     * @param id the id of the item
+     * @param newPrice the new price of the item to set
+     * @return true if item successfully updated
+     */
     public boolean updateItemBasePrice(
         final String id,
         final double newPrice
