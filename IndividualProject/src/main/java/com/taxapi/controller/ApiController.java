@@ -101,6 +101,8 @@ public final class ApiController {
      * Returns a list of all current items.
      * 
      * @param apiKey the required api key to qualify requests
+     * @param category of the items
+     * @param q substring of name of the item
      * @return a list of items
      * @throws IOException if an I/O error occurs
      */
@@ -108,8 +110,8 @@ public final class ApiController {
     public ResponseEntity<List<Item>> getItems(
         @RequestHeader("X-API-Key")
         final String apiKey,
-        @RequestParam(required = false) String category,
-        @RequestParam(required = false) String q
+        @RequestParam(required = false) final String category,
+        @RequestParam(required = false) final String q
     ) throws IOException {
         if (!taxApiService.validateApiKey(apiKey)) {
             return ResponseEntity
@@ -173,8 +175,17 @@ public final class ApiController {
         return ResponseEntity.noContent().build();
     }
 
+    /**
+     * Update an item's base price by its id.
+     * 
+     * @param apiKey the API key
+     * @param id the item ID
+     * @param newPrice the new price of the item to set
+     * @return success if item updated
+     * @throws IOException if an I/O error occurs
+     */
     @PatchMapping("/items/{id}")
-    public ResponseEntity<Void> updateItemBasePrice(
+    public ResponseEntity<?> updateItemBasePrice(
         @RequestHeader("X-API-Key")
         final String apiKey,
         @PathVariable final String id,
@@ -185,6 +196,15 @@ public final class ApiController {
                 .status(HttpStatus.UNAUTHORIZED)
                 .build();
         }
+
+        // don't allow negative or zero prices
+        if (newPrice <= 0) {
+            return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body("Price has to be positive and non-zero.");
+        }
+
+
         boolean updatedBasePrice =
             taxApiService.updateItemBasePrice(id, newPrice);
 
