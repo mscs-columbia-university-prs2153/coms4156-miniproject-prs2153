@@ -1,0 +1,39 @@
+name: REST API CI Workflow
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./IndividualProject
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Install Maven
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y maven
+
+      - name: Check style
+        run: |
+          mvn checkstyle:check
+          mvn checkstyle:checkstyle
+
+      - name: Run tests
+        run: mvn test
+
+
+
