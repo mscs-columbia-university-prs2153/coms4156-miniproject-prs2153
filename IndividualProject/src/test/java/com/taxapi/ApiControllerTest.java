@@ -181,6 +181,15 @@ class ApiControllerTest {
     }
 
     @Test
+    void getItemsByIdWithInvalidID() throws Exception {
+        mockMvc.perform(
+            get("/v1/items/item-999999")
+            .header("X-API-Key", VALID_KEY)
+        )
+        .andExpect(status().isNotFound());
+    }
+
+    @Test
     void getItemsByIdWithInvalidApiKey() throws Exception {
         mockMvc.perform(
             get("/v1/items/Laptop")
@@ -255,6 +264,17 @@ class ApiControllerTest {
     }
 
     @Test
+    void calculateTaxWithID() throws Exception {
+        mockMvc.perform(
+            post("/v1/tax/quote")
+            .header("X-API-Key", VALID_KEY)
+            .contentType("application/json")
+            .content("{\"id\": \"item-1\", \"price\":\"100.00\", \"category\":\"electronics\", \"state\":\"CA\"}")
+        )
+        .andExpect(status().isOk());
+    }
+
+    @Test
     void calculateTaxWithoutId() throws Exception {
         mockMvc.perform(
             post("/v1/tax/quote")
@@ -274,6 +294,17 @@ class ApiControllerTest {
             .content("{}")
         )
         .andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    void calculateTaxWithInvalidState() throws Exception {
+        mockMvc.perform(
+            post("/v1/tax/quote")
+            .header("X-API-Key", VALID_KEY)
+            .contentType("application/json")
+            .content("{\"id\": \"item-1\", \"price\":\"100.00\", \"category\":\"electronics\", \"state\":\"ZZ\"}")
+        )
+        .andExpect(status().isBadRequest());
     }
 
     @Test
