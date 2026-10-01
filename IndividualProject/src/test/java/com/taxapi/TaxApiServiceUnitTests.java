@@ -51,6 +51,24 @@ class TaxApiServiceUnitTests {
     }
 
     @Test
+    void validateApiKeyWithNullKey() throws Exception {
+        boolean result = service.validateApiKey(null);
+        assertEquals(false, result);
+    }
+
+    @Test
+    void deleteItemThatDoesntExist() throws Exception {
+        boolean result = service.deleteItem("dne");
+        assertEquals(false, result);
+    }
+
+    @Test
+    void updateItemBasePriceThatDoesntExist() throws Exception {
+        boolean result = service.updateItemBasePrice("dne", 1.0);
+        assertEquals(false, result);
+    }
+
+    @Test
     void calculateTaxByItemId() throws Exception {
         TaxQuoteRequest tqr = new TaxQuoteRequest();
         tqr.setItemId("item-1");
