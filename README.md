@@ -2,8 +2,9 @@
 This is the miniproject repo for COMS4156 in Fall 2026.
 
 ## Important Information
-- Honesty pledge can be outlined in honesty.txt
-- Bugs that were identified can be located in bugs.txt
+- Honesty pledge can be outlined in `honesty.txt`
+- Bugs that were identified can be located in `bugs.txt`
+- Relevant references that were used can be located in `citations.txt`
 - Manual testing demo (part 3): https://www.youtube.com/watch?v=nqoTY5R5T00
 - Mock client testing demo (part 6): https://www.youtube.com/watch?v=R3lDAHsP8
 - AI usage: __CODEX__ (OpenAI) was only used for the development the API client within `/IndividualProject-client`
@@ -12,7 +13,6 @@ This is the miniproject repo for COMS4156 in Fall 2026.
 <hr style="height:5px; border: none; background-color: #000;">
 
 # Endpoints
-<hr style="height: 1px; border: none; background-color: #999;">
 
 ### `POST` - `/clients`
 Creates a new client to register to the API. 
