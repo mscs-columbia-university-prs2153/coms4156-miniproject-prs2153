@@ -13,3 +13,8 @@ This is the miniproject repo for 4156 in Fall 2026.
 
 1) Run workflow
 - `act push`
+
+
+### Client
+Assisted by Codex
+Demo: https://youtu.be/3qI-bzbWZ5Q
