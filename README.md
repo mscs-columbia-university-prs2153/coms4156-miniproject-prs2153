@@ -193,6 +193,25 @@ JSON list, each element consisting of a state and a category it supports.
 <hr style="height:5px; border: none; background-color: #000;">
 
 # Local Development
+## Prerequisites
+- Java 17
+- Apache Maven >= 3.9
+
+## Actions
+To run server locally
+- `mvn spring-boot:run`
+
+To check style
+- `mvn checkstyle:check`
+
+To perform unit tests
+- `mvn clean test`
+- `open target/site/jacoco/index.html`
+
+To perform static analysis
+- `mvn pmd:pmd`
+
+
 
 
 
@@ -225,6 +244,8 @@ Command: `mvn pmd:pmd`
 
 # Continuous Integration
 ## CI Procedure
+It is defined as a Github workflow in `/.github/workflows/ci.yml`
+
 The CI pipeline runs automatically upon:
 - pushes
 - pull requests
@@ -237,11 +258,11 @@ The steps include:
 5) Performing static analysis
 
 ## Running CI Pipeline Locally
-0) Install prerequisites
-- `brew install docker`
-- `brew install act`
+#### Prerequisites:
+- docker
+- act >= 0.2.89
 
-1) Run workflow
+#### To run:
 - `act push`
 
 
@@ -262,10 +283,11 @@ Located in `/IndividualProject-Client`, was assisted using __CODEX__ (OpenAI) fo
 The client application utilizes DASH, a Python web application framework. It is built ontop of ReactJS.
 
 ## Running Locally
-Requirements:
+#### Prerequisites:
 - Python >= 3.9
 - Make >= 3.81
 
-To run locally, simply execute the command:
+#### To Run:
+Simply execute the command:
 - `make run`
 this command automatically handles the instantiation of the Python environment and related dependencies, then deploys the application locally at: `localhost:8050`
