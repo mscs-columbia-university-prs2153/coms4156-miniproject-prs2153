@@ -6,5 +6,5 @@ env:
 	uv venv --clear --python $(PYTHON_VERSION)
 	uv pip install --python .venv/bin/python -r requirements.txt
 
-run:
+run: env
 	uv run --python .venv/bin/python app.py

@@ -1,9 +1,18 @@
 # COMS 4156 Individual Mini-Project
-This is the miniproject repo for 4156 in Fall 2026.
+This is the miniproject repo for COMS4156 in Fall 2026.
+
+## Important Information
+- Honesty pledge can be outlined in honesty.txt
+- Bugs that were identified can be located in bugs.txt
+- Manual testing demo (part 3): https://www.youtube.com/watch?v=nqoTY5R5T00
+- Mock client testing demo (part 6): https://www.youtube.com/watch?v=R3lDAHsP8
+- AI usage: __CODEX__ (OpenAI) was only used for the development the API client within `/IndividualProject-client`
 
 
 <hr style="height:5px; border: none; background-color: #000;">
+
 # Endpoints
+<hr style="height: 1px; border: none; background-color: #999;">
 
 ### `POST` - `/clients`
 Creates a new client to register to the API. 
@@ -181,24 +190,53 @@ Provides a list of all supported tax rates.
 JSON list, each element consisting of a state and a category it supports.
 
 
-## Local Development
+<hr style="height:5px; border: none; background-color: #000;">
+
+# Local Development
 
 
 
 
-## Code Validation
-### Styling Checking
+<hr style="height:5px; border: none; background-color: #000;">
 
-### Branch Coverage
+# Code Validation
+## Styling Checking
+Maven's Checkstyle plugin was used to perform style checking, configured in pom.xml.
+
+Command: `mvn checkstyle:check`
+![alt text](images/style_check.png)
 
 
+## Branch Coverage
+Jacaco was used to perform branch analysis to ensure an overall branch coverage above 85%.
+
+Command: `mvn clean test && open target/site/jacoco/index.html`
+![alt text](images/branch_coverage.png)
 
 
+## Static Analysis
+The static analysis tool used was PMD.
 
-## Continuous Integration
-### CI Procedure
+Command: `mvn pmd:pmd`
+![alt text](images/static_analysis.png)
 
-### Running CI Pipeline Locally
+<hr style="height:5px; border: none; background-color: #000;">
+
+
+# Continuous Integration
+## CI Procedure
+The CI pipeline runs automatically upon:
+- pushes
+- pull requests
+
+The steps include:
+1) Setting up Java 17
+2) Installing Maven
+3) Checking code style
+4) Running unit tests
+5) Performing static analysis
+
+## Running CI Pipeline Locally
 0) Install prerequisites
 - `brew install docker`
 - `brew install act`
@@ -207,23 +245,27 @@ JSON list, each element consisting of a state and a category it supports.
 - `act push`
 
 
-## API Client Application
+<hr style="height:5px; border: none; background-color: #000;">
 
+# API Client Application
+Located in `/IndividualProject-Client`, was assisted using __CODEX__ (OpenAI) for development.
 
+**Note:** This application isn't the main focus of this repository, so information regarding the client intentionally lacks depth.
 
+## Preview
+#### Home Page
+![alt text](images/client_app.png)
+#### Item Page
+![alt text](images/client_app_p2.png)
 
-## Information
-- Honesty pledge can be outlined in honesty.txt
-- Bugs that were identified can be located in bugs.txt
-- Static Bug Finder Used: PMD (https://pmd.github.io/)
+## Implementation
+The client application utilizes DASH, a Python web application framework. It is built ontop of ReactJS.
 
+## Running Locally
+Requirements:
+- Python >= 3.9
+- Make >= 3.81
 
-
-
-
-### Manual Testing
-Demo: https://www.youtube.com/watch?v=nqoTY5R5T00
-
-### Client Testing 
-Assisted by Codex
-Demo: https://www.youtube.com/watch?v=R3lDAHsP8Dc
+To run locally, simply execute the command:
+- `make run`
+this command automatically handles the instantiation of the Python environment and related dependencies, then deploys the application locally at: `localhost:8050`

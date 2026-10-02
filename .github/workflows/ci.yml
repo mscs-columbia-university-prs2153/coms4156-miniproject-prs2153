@@ -35,5 +35,8 @@ jobs:
       - name: Run tests
         run: mvn test
 
+      - name: Run static analysis
+        run: mvn pmd:pmd
+
 
 
