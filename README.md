@@ -6,7 +6,7 @@ This is the miniproject repo for COMS4156 in Fall 2026.
 - Bugs that were identified can be located in `bugs.txt`
 - Relevant references that were used can be located in `citations.txt`
 - Manual testing demo (part 3): https://www.youtube.com/watch?v=nqoTY5R5T00
-- Mock client testing demo (part 6): https://www.youtube.com/watch?v=R3lDAHsP8
+- Mock client testing demo (part 6): https://www.youtube.com/watch?v=R3lDAHsP8Dc
 - AI usage: __CODEX__ (OpenAI) was only used for the development the API client within `/IndividualProject-client`
 
 
